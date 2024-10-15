@@ -1,28 +1,54 @@
+import { useEffect, useState } from "react";
+import IpGeolocationService from "../../services/IpGeolocationService";
+import { IpApiResponse } from "../../types/IpApiResponse";
+import useIpAddress from "../../hooks/useIpAddress";
+
 const InfoBar = () => {
-  const ipAddress = "192.212.172.101";
-  const location = "Brooklyn, NY 10001";
-  const timezone = "UTC-05:00";
-  const isp = "SpaceX Starlink";
+  const { ipAddress } = useIpAddress();
+
+  const [ipData, setIpData] = useState<IpApiResponse | null>(null);
+
+  useEffect(() => {
+    const fetchIpData = async () => {
+      const ipService = new IpGeolocationService();
+      const data = await ipService.getIpData(ipAddress);
+      setIpData(data);
+    };
+
+    fetchIpData();
+  }, [ipAddress]);
+
   return (
-    <section className="relative">
-      <div className="bg-white text-black p-10 rounded-xl flex gap-10 border md:flex-row flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1">
-        <div className="md:border-r-2 md:pr-10">
-          <p className="text-gray-400 font-bold">IP ADDRESS</p>
-          <h2 className="text-2xl font-bold">{ipAddress}</h2>
+    <section className="relative z-10">
+      {ipData ? (
+        <div className="bg-white text-black p-10 rounded-xl flex gap-10  md:flex-row flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1">
+          <div className="md:border-r-2 md:pr-10">
+            <p className="text-gray-400 font-bold">IP ADDRESS</p>
+            <h2 className="text-2xl font-bold">{ipData && ipData.ip}</h2>
+          </div>
+          <div className="md:border-r-2 md:pr-10">
+            <p className="text-gray-400 font-bold">LOCATION</p>
+            <h2 className="text-2xl font-bold">
+              {ipData && ipData.location.country},{" "}
+              {ipData && ipData.location.region}
+            </h2>
+          </div>
+          <div className="md:border-r-2 md:pr-10">
+            <p className="text-gray-400 font-bold">TIMEZONE</p>
+            <h2 className="text-2xl font-bold">
+              {ipData && ipData.location.timezone}
+            </h2>
+          </div>
+          <div>
+            <p className="text-gray-400 font-bold">ISP</p>
+            <h2 className="text-2xl font-bold">{ipData && ipData.isp}</h2>
+          </div>
         </div>
-        <div className="md:border-r-2 md:pr-10">
-          <p className="text-gray-400 font-bold">LOCATION</p>
-          <h2 className="text-2xl font-bold">{location}</h2>
-        </div>
-        <div className="md:border-r-2 md:pr-10">
-          <p className="text-gray-400 font-bold">TIMEZONE</p>
-          <h2 className="text-2xl font-bold">{timezone}</h2>
-        </div>
-        <div>
-          <p className="text-gray-400 font-bold">ISP</p>
-          <h2 className="text-2xl font-bold">{isp}</h2>
-        </div>
-      </div>
+      ) : (
+        <h2 className="text-xl font-bold text-white">
+          Please enter a valid IP Address
+        </h2>
+      )}
     </section>
   );
 };
