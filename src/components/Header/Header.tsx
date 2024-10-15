@@ -21,6 +21,7 @@ const Header = () => {
       updateIpAddress(notValidatedIpAddress);
     } else {
       setError("Please enter a valid IP address or domain.");
+      updateIpAddress(null);
     }
   };
 

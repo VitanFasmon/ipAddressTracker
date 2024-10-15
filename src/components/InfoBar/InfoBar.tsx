@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import IpGeolocationService from "../../services/IpGeolocationService";
 import { IpApiResponse } from "../../types/IpApiResponse";
-import usePosition from "../../hooks/usePosition";
+import { usePositionStore } from "../../hooks/usePositionStore";
 
 interface InfoBarProps {
   ipAddress: string | null;
 }
 const InfoBar = ({ ipAddress }: InfoBarProps) => {
   const [ipData, setIpData] = useState<IpApiResponse | null>(null);
-  const { position, updatePosition } = usePosition();
+  const { updatePosition } = usePositionStore();
   useEffect(() => {
     const fetchIpData = async () => {
       const ipService = new IpGeolocationService();
       const data = await ipService.getIpData(ipAddress);
       setIpData(data);
-      data && updatePosition([data.location.lat, data.location.lng]);
+      data
+        ? updatePosition([data.location.lat, data.location.lng])
+        : updatePosition(null);
     };
     fetchIpData();
   }, [ipAddress]);

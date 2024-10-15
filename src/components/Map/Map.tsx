@@ -3,16 +3,13 @@ import { DivIcon, LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIcon from "../../assets/icons/icon-location.svg";
 import { useEffect } from "react";
-import usePosition from "../../hooks/usePosition";
-
+import { usePositionStore } from "../../hooks/usePositionStore";
 const Map = () => {
-  const { position } = usePosition();
-  useEffect(() => {
-    console.log(`Position in map: ${position}`);
-  }, [position]);
+  const { position } = usePositionStore();
+  useEffect(() => {}, [position]);
   return (
     <section className="h-[650px] relative z-0" id="map">
-      {position ? (
+      {position && (
         <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -31,10 +28,6 @@ const Map = () => {
             </Popup>
           </Marker>
         </MapContainer>
-      ) : (
-        <div>
-          <h3>Please enter a valid IP Address</h3>
-        </div>
       )}
     </section>
   );
