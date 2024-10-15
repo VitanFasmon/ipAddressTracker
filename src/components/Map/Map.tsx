@@ -1,15 +1,15 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { DivIcon } from "leaflet";
+import { DivIcon, LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIcon from "../../assets/icons/icon-location.svg";
-import usePosition from "../../hooks/usePosition";
 import { useEffect } from "react";
-const Map = () => {
-  const { position, updatePosition } = usePosition();
+import usePosition from "../../hooks/usePosition";
 
+const Map = () => {
+  const { position } = usePosition();
   useEffect(() => {
-    updatePosition([51.505, -0.09]);
-  }, []);
+    console.log(`Position in map: ${position}`);
+  }, [position]);
   return (
     <section className="h-[650px] relative z-0" id="map">
       {position ? (

@@ -3,7 +3,12 @@ export interface IpApiResponse {
   location: {
     country: string; // Country code (e.g., "US")
     region: string; // Region or state (e.g., "California")
-    timezone: string; // Timezone offset (e.g., "-07:00")
+    city: string;
+    lat: number;
+    lng: number;
+    postalCode: number;
+    timezone: string;
+    geonameId: number;
   };
   domains: string[]; // Array of domains associated with the IP address
   as: {

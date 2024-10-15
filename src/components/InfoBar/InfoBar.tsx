@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import IpGeolocationService from "../../services/IpGeolocationService";
 import { IpApiResponse } from "../../types/IpApiResponse";
-import useIpAddress from "../../hooks/useIpAddress";
+import usePosition from "../../hooks/usePosition";
 
-const InfoBar = () => {
-  const { ipAddress } = useIpAddress();
-
+interface InfoBarProps {
+  ipAddress: string | null;
+}
+const InfoBar = ({ ipAddress }: InfoBarProps) => {
   const [ipData, setIpData] = useState<IpApiResponse | null>(null);
-
+  const { position, updatePosition } = usePosition();
   useEffect(() => {
     const fetchIpData = async () => {
       const ipService = new IpGeolocationService();
       const data = await ipService.getIpData(ipAddress);
       setIpData(data);
+      data && updatePosition([data.location.lat, data.location.lng]);
     };
-
     fetchIpData();
   }, [ipAddress]);
 
   return (
     <section className="relative z-10">
-      {ipData ? (
+      {ipData && (
         <div className="bg-white text-black p-10 rounded-xl flex gap-10  md:flex-row flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1">
           <div className="md:border-r-2 md:pr-10">
             <p className="text-gray-400 font-bold">IP ADDRESS</p>
@@ -44,10 +45,6 @@ const InfoBar = () => {
             <h2 className="text-2xl font-bold">{ipData && ipData.isp}</h2>
           </div>
         </div>
-      ) : (
-        <h2 className="text-xl font-bold text-white">
-          Please enter a valid IP Address
-        </h2>
       )}
     </section>
   );
