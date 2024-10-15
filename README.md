@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# IP Address Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+The **IP Address Tracker** is a web application that allows users to input an IP address or domain name to get detailed information about its geographical location, including country, region, timezone, and ISP. The application utilizes geolocation services to fetch and display the data on an interactive map, providing a visual representation of the location associated with the IP address.
 
-## Available Scripts
+## Features
+- Input validation for IP addresses and domain names.
+- Geolocation data fetching using a third-party API.
+- Interactive map displaying the location of the IP address.
+- Responsive design for both desktop and mobile devices.
 
-In the project directory, you can run:
+## Technologies Used
+- React: A JavaScript library for building user interfaces.
+- TypeScript: A strict syntactical superset of JavaScript that adds static typing.
+- Zustand: A small, fast, and scalable state management solution.
+- React Leaflet: A library for rendering maps in React applications.
+- CSS: For styling the application.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ip-address-tracker.git
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Navigate to the project directory:
+   ```bash
+   cd ip-address-tracker
+   ```
 
-### `npm test`
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Run the application:
+   ```bash
+   npm start
+   ```
+   The application will be available at `http://localhost:3000`.
 
-### `npm run build`
+## Usage
+- Enter an IP address name in the input field and click the search button.
+- The application will validate the input and fetch the corresponding geolocation data.
+- The map will update to show the location of the IP address.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Acknowledgments
+- [React](https://reactjs.org/) for the UI framework.
+- [Leaflet](https://leafletjs.com/) for the interactive mapping library.
+- [IP Geolocation API](https://ipgeolocation.io/) for providing geolocation data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Author
+Vitan Fasmon
