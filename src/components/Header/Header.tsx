@@ -45,7 +45,7 @@ const Header = () => {
           placeholder="Search for any IP address or domain"
           value={notValidatedIpAddress}
           onChange={(e) => setNotValidatedIpAddress(e.currentTarget.value)}
-          className={`w-[500px] rounded-l-lg p-4 ${
+          className={`md:w-[500px] w-auto rounded-l-lg p-4 ${
             error ? "border-red-500" : ""
           }`}
         />

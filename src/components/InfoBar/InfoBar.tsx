@@ -22,9 +22,9 @@ const InfoBar = ({ ipAddress }: InfoBarProps) => {
   }, [ipAddress]);
 
   return (
-    <section className="relative z-10">
+    <section className="md:relative static z-10">
       {ipData && (
-        <div className="bg-white text-black p-10 rounded-xl flex gap-10  md:flex-row flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1">
+        <div className="bg-white text-black p-10 rounded-xl flex gap-10  md:flex-row flex-col md:absolute static md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1">
           <div className="md:border-r-2 md:pr-10">
             <p className="text-gray-400 font-bold">IP ADDRESS</p>
             <h2 className="text-2xl font-bold">{ipData && ipData.ip}</h2>
